@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>I'm Sorry ❤️</title>
+<style>
+    body{
+        margin:0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        text-align:center;
+        color:#fff;
+        overflow:hidden;
+    }
+
+    .card{
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(10px);
+        padding:40px;
+        border-radius:25px;
+        box-shadow:0 0 30px rgba(0,0,0,0.2);
+        max-width:400px;
+        animation: fadeIn 1.5s ease;
+    }
+
+    h1{
+        margin-top:0;
+        font-size:2.2em;
+    }
+
+    #message{
+        font-size:1.3em;
+        margin:25px 0;
+        min-height:60px;
+    }
+
+    button{
+        border:none;
+        padding:12px 22px;
+        margin:10px;
+        border-radius:25px;
+        font-size:1em;
+        cursor:pointer;
+        transition:.3s;
+    }
+
+    .sorry{
+        background:#ff6b81;
+        color:white;
+    }
+
+    .forgive{
+        background:#2ed573;
+        color:white;
+    }
+
+    .runaway{
+        position:absolute;
+        background:#ffa502;
+        color:white;
+    }
+
+    button:hover{
+        transform:scale(1.1);
+    }
+
+    @keyframes fadeIn{
+        from{opacity:0; transform:translateY(30px);}
+        to{opacity:1; transform:translateY(0);}
+    }
+
+    .heart{
+        position:absolute;
+        font-size:20px;
+        animation: float 4s linear infinite;
+    }
+
+    @keyframes float{
+        0%{transform:translateY(0); opacity:1;}
+        100%{transform:translateY(-800px); opacity:0;}
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h1>I'm Really Sorry 💔</h1>
+    <div id="message">Click a button to see how sorry I am 😔</div>
+
+    <button class="sorry" onclick="nextSorry()">Hear My Apology</button>
+    <button class="forgive" onclick="forgive()">I Forgive You ❤️</button>
+    <button class="runaway" id="noBtn">Still Angry 😤</button>
+</div>
+
+<script>
+const messages = [
+"I’m sorry for what I did 😔",
+"I didn’t mean to hurt you 💔",
+"You mean everything to me ❤️",
+"I promise I’ll do better 🥺",
+"My world is incomplete without you 🌎",
+"Please forgive me my love 💞",
+"You are my favorite person forever 💖"
+];
+
+let index = 0;
+
+function nextSorry(){
+    document.getElementById("message").innerText = messages[index];
+    index = (index + 1) % messages.length;
+    hearts();
+}
+
+function forgive(){
+    document.getElementById("message").innerText =
+    "YAYYY 😍 Thank you for forgiving me! I love you sooo much ❤️❤️❤️";
+    hearts(20);
+}
+
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", ()=>{
+    noBtn.style.top = Math.random()*80+"%";
+    noBtn.style.left = Math.random()*80+"%";
+});
+
+function hearts(count=5){
+    for(let i=0;i<count;i++){
+        let heart = document.createElement("div");
+        heart.className="heart";
+        heart.innerText="💖";
+        heart.style.left = Math.random()*100+"%";
+        heart.style.fontSize = (15+Math.random()*30)+"px";
+        document.body.appendChild(heart);
+
+        setTimeout(()=>heart.remove(),4000);
+    }
+}
+</script>
+
+</body>
+</html>
